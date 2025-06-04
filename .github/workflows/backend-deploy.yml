@@ -41,9 +41,9 @@ jobs:
       - name: Deploy SAM application
         run: |
           cd hit-counter-backend
-          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name hit-counter-backend --capabilities CAPABILITY_IAM --region us-east-1
+          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
 
       - name: Output API Gateway URL
         run: |
           cd hit-counter-backend
-          aws cloudformation describe-stacks --stack-name hit-counter-backend --query 'Stacks[0].Outputs[?OutputKey==`HitCounterApi`].OutputValue' --output text
+          aws cloudformation describe-stacks --stack-name hit-counter --query 'Stacks[0].Outputs[?OutputKey==`HitCounterApiEndpoint`].OutputValue' --output text

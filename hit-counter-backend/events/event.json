@@ -1,0 +1,14 @@
+{
+  "resource": "/hitCounter",
+  "path": "/hitCounter",
+  "httpMethod": "GET",
+  "headers": {
+    "Accept": "*/*"
+  },
+  "requestContext": {
+    "resourcePath": "/hitCounter",
+    "httpMethod": "GET",
+    "path": "/hitCounter"
+  },
+  "isBase64Encoded": false
+}

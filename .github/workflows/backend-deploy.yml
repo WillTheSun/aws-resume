@@ -1,0 +1,49 @@
+name: Deploy Backend with SAM
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "hit-counter-backend/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Setup AWS SAM CLI
+        uses: aws-actions/setup-sam@v2
+        with:
+          use-installer: true
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Build SAM application
+        run: |
+          cd hit-counter-backend
+          sam build --use-container
+
+      - name: Deploy SAM application
+        run: |
+          cd hit-counter-backend
+          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name hit-counter-backend --capabilities CAPABILITY_IAM --region us-east-1
+
+      - name: Output API Gateway URL
+        run: |
+          cd hit-counter-backend
+          aws cloudformation describe-stacks --stack-name hit-counter-backend --query 'Stacks[0].Outputs[?OutputKey==`HitCounterApi`].OutputValue' --output text

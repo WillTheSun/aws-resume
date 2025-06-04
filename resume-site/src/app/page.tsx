@@ -3,12 +3,6 @@ import VisitorCounter from './components/VisitorCounter';
 export default function Home() {
   return (
     <main className="max-w-[1000px] mx-auto px-4 py-6">
-      {/* Fun Deployment Test Banner */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center py-3 mb-6 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold">🚀 Testing GitHub Actions Deploy Pipeline! 🎉</h1>
-        <p className="text-sm opacity-90 mt-1">This banner proves our CI/CD is working!</p>
-      </div>
-
       {/* Header */}
       <header className="text-center mb-8">
         <h1 className="mb-1">WILLIAM SUN</h1>

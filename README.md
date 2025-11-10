@@ -1,6 +1,6 @@
 # AWS Cloud Resume Challenge
 
-This project contains a cloud-based resume website with a visitor counter, built using AWS services.
+This project deploys an AWS cloud-based resume site with a visitor counter. I built this in one day in May to brush up on AWS coming from GCP.
 
 ## Architecture
 
